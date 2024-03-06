@@ -1,0 +1,41 @@
+/* Add dark mode styles */
+body.dark-mode {
+    background-color: #242526; /* Dark grey background color */
+    color: #fff; /* White text color */
+}
+
+body.dark-mode h1,
+body.dark-mode p {
+    text-align: center;
+}
+
+body.dark-mode p {
+    font-size: 24px;
+}
+
+/* Add this CSS for the hover animation */
+#car {
+    transition: transform 0.3s ease;
+}
+
+#car:hover {
+    transform: scale(1.15); /* Increase size on hover */
+}
+
+.mistake-particle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url('assets/images/mistake.png');
+    background-size: contain;
+    z-index: 9999; /* Make sure it's above other content */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

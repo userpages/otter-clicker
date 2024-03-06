@@ -170,13 +170,8 @@ setInterval(function() {
 }, 1000); // 1000 ms = 1 second
 
 setInterval(function() {
-    if(superMiUpgrades > 0) {
+    if(superMiUpgrades & miUpgrades > 0) {
         createParticle();
     }
 }, 5000); // 5000 ms = 5 seconds
 
-setInterval(function() {
-    if(miUpgrades > 0) {
-        createParticle();
-    }
-}, 5000); // 5000 ms = 5 seconds

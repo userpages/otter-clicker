@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mistake Clicker</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mistake Clicker</h1>
+        <img id="car" src="assets/images/mistake.png" width="320" height="140" onclick="addToMiles(clickingPower)">
+        <p>Mistakes Clicked: <span id="miles">0</span></p>
+
+        <!-- the upgrade buttons-->
+        <button onclick="buyTaxi()">Mi-Upgrades [<span id="taxicost">15</span>] -- <span id="taxis">0</span></button>
+        <button onclick="buyOldTruck()">Super Mi-Upgrades [<span id="oldtruckcost">100</span>] -- <span id="oldtrucks">0</span></button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -13,7 +13,7 @@ function addToMiles(amount) {
 
 // Function to check if Super Mi-Upgrade is available
 function isSuperMiUpgradeAvailable() {
-  return miUpgradePurchases >= 10;
+  return miUpgradePurchases >= 2;
 }
 
 

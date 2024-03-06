@@ -1,48 +1,69 @@
-//define miles
+// Define miles
 let miles = 0;
 let clickingPower = 1;
-//function when clicked on element(image/car)
+
+// Define a variable to keep track of the number of Mi-Upgrade purchases
+let miUpgradePurchases = 0;
+
+// Function when clicked on element(image/car)
 function addToMiles(amount) {
-  miles = miles + amount;
+  miles += amount;
   document.getElementById("miles").innerHTML = miles;
 }
 
-//                         !! upgrades !!
-//TAXI
-let taxiCost = 15;
-let taxis = 0;
-//TRUCK
-let oldtruckCost = 100;
-let oldtrucks = 0;
-//BTR-80 TANK
-let btrtankCost = 9999999999;
-let btrtanks = 0;
+// Function to check if Super Mi-Upgrade is available
+function isSuperMiUpgradeAvailable() {
+  return miUpgradePurchases >= 10;
+}
 
-function buyTaxi() {
-  if (miles>= taxiCost) {
-    miles = miles - taxiCost;
-    taxis = taxis + 1;
-    taxicost = Math.round(taxiCost * 2);
+
+//                         !! Upgrades !!
+// MI-UPGRADE
+let miUpgradeCost = 15;
+let miUpgrades = 0;
+
+function buyMiUpgrade() {
+  if (miles >= miUpgradeCost) {
+    miles -= miUpgradeCost;
+    miUpgrades++;
+    miUpgradeCost = Math.round(miUpgradeCost * 2);
     document.getElementById("miles").innerHTML = miles;
-    document.getElementById("taxicost").innerHTML = taxiCost;
-    document.getElementById("taxis").innerHTML = taxis;
+    document.getElementById("miUpgradeCost").innerHTML = miUpgradeCost;
+    document.getElementById("miUpgrades").innerHTML = miUpgrades;
+
+    // Increment the count of Mi-Upgrade purchases
+    miUpgradePurchases++;
+
+    // Check if Super Mi-Upgrade should be made available
+    if (isSuperMiUpgradeAvailable()) {
+      document.getElementById("superMiUpgradeBtn").style.display = "block";
+    }
   }
 }
 
-function buyOldTruck() {
-  if (miles>= oldtruckCost) {
-    miles = miles - oldtruckCost;
-    oldtrucks = oldtrucks + 1;
-    oldtruckcost = Math.round(oldtruckCost * 2);
+// SUPER MI-UPGRADE
+let superMiUpgradeCost = 50;
+let superMiUpgrades = 0;
+
+function buySuperMiUpgrade() {
+  if (miles >= superMiUpgradeCost) {
+    miles -= superMiUpgradeCost;
+    superMiUpgrades++;
+    superMiUpgradeCost = Math.round(superMiUpgradeCost * 2);
     document.getElementById("miles").innerHTML = miles;
-    document.getElementById("oldtruckcost").innerHTML = oldtruckCost;
-    document.getElementById("oldtrucks").innerHTML = oldtrucks;
+    document.getElementById("superMiUpgradeCost").innerHTML = superMiUpgradeCost;
+    document.getElementById("superMiUpgrades").innerHTML = superMiUpgrades;
   }
 }
 
-setInterval(
-  function() {
-    miles = miles + taxis;
-    miles = miles + oldtrucks * 5;
-    document.getElementById("miles").innerHTML = miles;
-  }, 1000); //1000 ms = 1 second
+// Toggle dark mode function
+function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle("dark-mode");
+}
+
+// Set interval to increase miles
+setInterval(function() {
+  miles += miUpgrades;
+  document.getElementById("miles").innerHTML = miles;
+}, 1000); // 1000 ms = 1 second

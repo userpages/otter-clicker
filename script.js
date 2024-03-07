@@ -27,7 +27,7 @@ function createParticle() {
         }
 
         const isGolden = Math.random() < 0.015;
-        const isPurple = Math.random() < 0.019; // 1.9% chance of being a purple particle
+        const isPurple = Math.random() < 0.030; // 1.9% chance of being a purple particle
 
         const particle = document.createElement('div');
         particle.classList.add('mistake-particle');

@@ -17,59 +17,54 @@ function addToMiles(amount) {
 }
 
 function createParticle() {
-    const maxParticlesPerFrame = Math.floor(Math.random() * (20 - 10 + 1)) + 10; // Random limit between 10 and 20 particles per frame
-    let particlesCreatedThisFrame = 0; // Track the number of particles created in the current frame
+    const maxParticlesPerFrame = Math.floor(Math.random() * (20 - 10 + 1)) + 10;
+    let particlesCreatedThisFrame = 0;
 
     function attemptCreateParticle() {
         if (particlesCreatedThisFrame >= maxParticlesPerFrame) {
-            // If the limit is reached, delay the creation of new particles
-            setTimeout(attemptCreateParticle, 0); // Schedule the creation for the next frame
+            setTimeout(attemptCreateParticle, 0);
             return;
         }
 
-        const isGolden = Math.random() < 0.015; // 5% chance of being a golden particle
+        const isGolden = Math.random() < 0.015;
+        const isPurple = Math.random() < 0.019; // 1.9% chance of being a purple particle
 
         const particle = document.createElement('div');
         particle.classList.add('mistake-particle');
         if (isGolden) {
-            particle.classList.add('golden-particle'); // Add a class for styling golden particles
+            particle.classList.add('golden-particle');
+        } else if (isPurple) {
+            particle.classList.add('purple-particle'); // Add a class for styling purple particles
         }
         document.body.appendChild(particle);
 
-        // Increment the counter for particles created in this frame
         particlesCreatedThisFrame++;
 
-        // Reset the counter when the frame ends
         requestAnimationFrame(() => {
             particlesCreatedThisFrame = 0;
         });
 
-        // Randomize size
-        const baseSize = isGolden ? 50 : Math.random() * 20 + 10; // Random size between 10 and 30 pixels, or 50 pixels for golden particles
+        const baseSize = isGolden ? 50 : isPurple ? 30 : Math.random() * 20 + 10;
 
-        // Apply size
         particle.style.width = baseSize + 'px';
         particle.style.height = baseSize + 'px';
 
-        // Randomize initial position within the clicked image
         const rect = document.getElementById('car').getBoundingClientRect();
         const x = rect.left + Math.random() * rect.width;
         const y = rect.top + Math.random() * rect.height;
         particle.style.left = x + 'px';
         particle.style.top = y + 'px';
 
-        // Randomize animation duration and falling direction
-        const animationDuration = Math.random() * 1000 + 1000; // Between 1 and 2 seconds
-        const angle = Math.random() * Math.PI / 4 - Math.PI / 8; // Random angle within -π/8 to π/8
-        const speed = 50; // Pixels per second
+        const animationDuration = Math.random() * 1000 + 1000;
+        const angle = Math.random() * Math.PI / 4 - Math.PI / 8;
+        const speed = 50;
         const deltaX = Math.sin(angle) * speed;
         const deltaY = Math.cos(angle) * speed;
 
-        // Animate particle
         let lastTime = null;
         function animate(time) {
             if (lastTime !== null) {
-                const deltaTime = (time - lastTime) / 1000; // Convert milliseconds to seconds
+                const deltaTime = (time - lastTime) / 1000;
                 const newX = parseFloat(particle.style.left) + deltaX * deltaTime;
                 const newY = parseFloat(particle.style.top) + deltaY * deltaTime;
                 particle.style.left = newX + 'px';
@@ -79,36 +74,37 @@ function createParticle() {
             if (parseFloat(particle.style.top) < window.innerHeight) {
                 requestAnimationFrame(animate);
             } else {
-                particle.remove(); // Remove particle when it falls out of view
+                particle.remove();
             }
         }
         requestAnimationFrame(animate);
 
-        // Apply spinning animation
         particle.style.animationDuration = animationDuration + 'ms';
         particle.style.animationName = 'spin';
 
-        // Fade out after 3 seconds
         setTimeout(() => {
             particle.style.opacity = '0';
-            particle.style.transition = 'opacity 1s'; // Smooth fade-out
+            particle.style.transition = 'opacity 1s';
             setTimeout(() => {
-                particle.remove(); // Remove particle after fading out
-            }, 1000); // Fading duration
-        }, 3000); // 3 seconds
+                particle.remove();
+            }, 1000);
+        }, 3000);
 
-        // Handle clicking golden particles
         if (isGolden) {
             particle.addEventListener('click', () => {
-                // Double the amount of points
-                miles *= 2;
+                miles *= 2; // Double the points
                 document.getElementById("miles").textContent = miles;
-                particle.remove(); // Remove the golden particle when clicked
+                particle.remove();
+            });
+        } else if (isPurple) {
+            particle.addEventListener('click', () => {
+                miles *= 1.5; // 1.5 times the points
+                document.getElementById("miles").textContent = miles;
+                particle.remove();
             });
         }
     }
 
-    // Attempt to create a particle
     attemptCreateParticle();
 }
 

@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     branches:
-      - main
+      - v2
 
 jobs:
   build:
@@ -41,3 +41,4 @@ jobs:
         name: release-${{ github.run_number }}
         path: dist
 
+  

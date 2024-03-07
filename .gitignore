@@ -17,4 +17,4 @@ Thumbs.db
 # Compiled files
 dist/
 build/
-github/
+github/workflows

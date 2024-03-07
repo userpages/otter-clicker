@@ -34,9 +34,17 @@
             top: 10px;
             right: 10px;
         }
+
+        #uptime {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
     </style>
 </head>
 <body>
+    <p id="uptime">Uptime: 0:00:00</p> <!-- Uptime display -->
     <button class="dark-mode-button" onclick="toggleDarkMode()">Dark Mode</button>
     <div class="container">
         <h1>Mistake Clicker</h1>

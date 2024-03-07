@@ -1,0 +1,20 @@
+# Node.js / Electron related
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+# macOS related
+.DS_Store
+
+# Windows related
+Thumbs.db
+
+# Editor/IDE related
+.vscode/
+.idea/
+
+# Compiled files
+dist/
+build/
+github/

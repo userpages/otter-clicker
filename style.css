@@ -31,6 +31,19 @@ body.dark-mode p {
     z-index: 9999; /* Make sure it's above other content */
 }
 
+.purple-particle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url('assets/images/purmistake.png'); /* Path to the golden particle image */
+    background-size: contain;
+    z-index: 1000; /* Make sure it's above other content */
+
+}
+
+
+
+
 @keyframes spin {
     from {
         transform: rotate(0deg);
@@ -43,7 +56,11 @@ body.dark-mode p {
 
 /* Add this CSS for the golden-particle */
 .golden-particle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
     background-image: url('assets/images/golmistake.png'); /* Path to the golden particle image */
     background-size: contain;
+    z-index: 1001; /* Make sure it's above other content */
 }
 

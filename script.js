@@ -157,6 +157,28 @@ function buySuperMiUpgrade() {
   }
 }
 
+let startTime = new Date(); // Record the start time
+
+// Function to update the uptime
+function updateUptime() {
+    let currentTime = new Date();
+    let timeDifference = currentTime - startTime; // Time difference in milliseconds
+    let seconds = Math.floor((timeDifference / 1000) % 60);
+    let minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+    let hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+
+    // Format the time as HH:MM:SS
+    let formattedTime = hours.toString().padStart(2, '0') + ":" +
+                        minutes.toString().padStart(2, '0') + ":" +
+                        seconds.toString().padStart(2, '0');
+
+    document.getElementById("uptime").textContent = formattedTime;
+}
+
+// Call the updateUptime function every second
+setInterval(updateUptime, 1000);
+
+
 // Toggle dark mode function
 function toggleDarkMode() {
     const body = document.body;
